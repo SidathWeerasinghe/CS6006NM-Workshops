@@ -1,4 +1,4 @@
-package workshop3b;
+package lk.next.workshop;
 
 import java.io.*;
 import java.net.*;

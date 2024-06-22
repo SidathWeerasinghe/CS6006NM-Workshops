@@ -1,8 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package workshop3b;
+package lk.next.workshop;
 
 //Server that echoes back client's messages.
 //At end of dialogue, sends message indicating number of
