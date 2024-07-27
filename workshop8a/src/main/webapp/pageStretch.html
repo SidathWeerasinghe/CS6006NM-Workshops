@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <title>Getting Sticky</title>
+    <style type="text/css">
+      * {font-family: sans-serif}
+      a {font-size: 6pt}
+      .editButton {font-size:6pt}
+    </style>
+
+    <script type="text/javascript">
+
+      function incrementCurrent() {
+        current = parseInt(document.forms["noteForm"].total.value);
+        document.forms["noteForm"].total.value = current + 1;
+      }
+
+      function getCurrentNumber() {
+        formElement = document.getElementById("noteForm");
+        return formElement.childNodes.item(1).value;
+      }
+
+       function makeNewNote(){
+        mainDivElement = document.getElementById("mainDiv");
+
+        newNote = document.createElement("div");
+        newNote.setAttribute("id", "note"+getCurrentNumber());
+
+        newNote.style.width="100";
+        newNote.style.height="100";
+        newNote.style.border="1px solid blue";
+        newNote.style.backgroundColor="yellow";
+        newNote.style.position="absolute";
+        newNote.style.top=(150);
+        newNote.style.left=(25 + 110*getCurrentNumber());
+
+        editLink = getEditLink("note"+getCurrentNumber());
+        newNote.appendChild(editLink);
+        newNote.appendChild(document.createElement("br"));
+ 
+        noteText = document.createTextNode("New Form");
+        newNote.appendChild(noteText);
+
+        mainDivElement.appendChild(newNote);
+
+        incrementCurrent();
+
+      }
+
+    function getEditLink(thisId){
+      editLink = document.createElement("a");
+      linkText = document.createTextNode("edit");
+
+      editLink.setAttribute("href", "javascript:editNote('"+thisId+"')");
+        
+      editLink.appendChild(linkText);
+      return editLink;
+    }
+
+
+      function editNote(editLink){
+        theDiv = document.getElementById(editLink);
+        newText = prompt("What should the note say?");
+
+        theDiv.firstChild.nextSibling.nextSibling.nodeValue=newText;
+      }
+
+
+    </script>
+  </head>
+  <body>
+    <div id="mainDiv" style="height:85%; width:85%; border:3px solid red; 
+                                             padding: 10px; z-index: -100" >
+    
+       <h1>Web Page with Stretch</h1>
+
+       <form id="noteForm">
+           Current number of notes  <input type="text" name="total" value="0" 
+                                             size="3"/>
+           <input type="button" value="Add a new note" 
+                                             onclick="makeNewNote()"/>
+       </form>
+
+    </div>
+  </body>
+</html>
